@@ -4,27 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "**"
+      - main
 
 jobs:
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - name: Windows
-            os: windows-latest
-          - name: macOS
-            os: macos-latest
-          - name: Android32
-            os: ubuntu-latest
-            target: Android32
-          - name: Android64
-            os: ubuntu-latest
-            target: Android64
-
-    name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
+    name: Windows Build
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +18,8 @@ jobs:
         uses: geode-sdk/build-geode-mod@main
         with:
           combine: true
-          target: ${{ matrix.config.target }}
+          # Tells the builder exactly where your CMakeLists.txt and mod.json are located
+          path: tick-buffer
 
   package:
     name: Package builds
