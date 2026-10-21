@@ -1,0 +1,101 @@
+{
+	"geode": "5.0.0",
+	"gd": {
+		"win": "2.2081"
+	},
+	"id": "o5oul.tick-buffer",
+	"name": "Tick Buffer",
+	"version": "v1.2.1",
+	"developer": "o5oul",
+	"description": "Customisable click leniency in physics ticks: orbs/rings, ground gamemodes (cube/ball/robot/spider) and a trajectory-lookahead assist for wave. Open the menu from the pause screen, or control it from the tickbuffer_ctl.py terminal.",
+	"settings": {
+		"enabled": {
+			"type": "bool",
+			"name": "Enabled",
+			"default": true
+		},
+		"orb-buffer": {
+			"type": "bool",
+			"name": "Orb / ring buffer",
+			"default": true
+		},
+		"ground-buffer": {
+			"type": "bool",
+			"name": "Ground buffer (cube, ball, robot, spider)",
+			"description": "Early: a click shortly before landing still jumps on landing. Late: a click shortly after walking off an edge still jumps.",
+			"default": true
+		},
+		"wave-assist": {
+			"type": "bool",
+			"name": "Wave lookahead assist",
+			"description": "Predicts the wave's path against hazard/solid hitboxes and corrects your input a few ticks early if you would otherwise hit something.",
+			"default": true
+		},
+		"early-ticks": {
+			"type": "int",
+			"name": "Early window (ticks)",
+			"default": 4,
+			"min": 0,
+			"max": 60,
+			"control": {
+				"input": true,
+				"slider": false
+			}
+		},
+		"late-ticks": {
+			"type": "int",
+			"name": "Late window (ticks)",
+			"default": 4,
+			"min": 0,
+			"max": 60,
+			"control": {
+				"input": true,
+				"slider": false
+			}
+		},
+		"wave-lookahead": {
+			"type": "int",
+			"name": "Wave lookahead (ticks)",
+			"description": "How far ahead the wave planner simulates. Larger = more forgiving.",
+			"default": 12,
+			"min": 1,
+			"max": 40,
+			"control": {
+				"input": true,
+				"slider": false
+			}
+		},
+		"wave-hitbox": {
+			"type": "float",
+			"name": "Wave hitbox size (units)",
+			"description": "Square hitbox used by the planner (scaled by mini wave). Tune if predictions look off.",
+			"default": 10.0,
+			"min": 2.0,
+			"max": 30.0
+		},
+		"wave-margin": {
+			"type": "float",
+			"name": "Wave safety margin (units)",
+			"default": 1.0,
+			"min": 0.0,
+			"max": 10.0
+		},
+		"p2-too": {
+			"type": "bool",
+			"name": "Apply to Player 2",
+			"default": true
+		},
+		"mark-as-test": {
+			"type": "bool",
+			"name": "Mark runs as test mode",
+			"description": "Prevents progress/completions from being saved while any assist is active (recommended, this is a practice assist).",
+			"default": true
+		},
+		"external-control": {
+			"type": "bool",
+			"name": "Allow terminal controller",
+			"description": "While tickbuffer_ctl.py is running, it overrides the early/late sliders.",
+			"default": true
+		}
+	}
+}
